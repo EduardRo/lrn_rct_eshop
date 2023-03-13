@@ -7,7 +7,9 @@ const App=()=> {
   
   return (
     <Routes>
-      <Route path = '/' element={<Home />} />
+      <Route path = '/home' element={<Home />} >
+        <Route path='shop' element={<Shop />}></Route>
+      </Route>
       
 
     </Routes>
@@ -17,3 +19,8 @@ const App=()=> {
 }
 
 export default App;
+
+
+const Shop = ()=>{
+  return <h1>This is Shop page</h1>
+};
