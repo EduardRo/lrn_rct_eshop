@@ -1,4 +1,4 @@
-
+import './categories.styles.scss';
 
 function App() {
   // initialize some array
@@ -33,10 +33,10 @@ function App() {
     <div className="categories-container" key='0'>
       
 
-      {categories.map(({title, index})=>(
-        <div className="category-container" key='1'>
+      {categories.map(({title, id, index})=>(
+        <div className="category-container" key={id+'cc'}>
         <div className="background-image" />
-        <div key={index} className="category-body-container">
+        <div key={index+'cb'} className="category-body-container">
           {/* <img /> */}
           <h2>{title}</h2>
           <p>Shop Now</p>
