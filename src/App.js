@@ -1,49 +1,46 @@
 import './categories.styles.scss';
+import CategoryItem from './components/category-item/category-item.component';
 
-function App() {
+const App=()=> {
   // initialize some array
   const categories = [
     {
       id:1,
       title:'Shirts',
+      imageUrl:'https://merer.ro/wp-content/uploads/2021/09/merer-desktop-poza-04-traditionale.jpg',
       
     },
     {
       id:2,
       title:'Perfumes',
+      imageUrl:'https://merer.ro/wp-content/uploads/2021/12/amaze-him-ajmal-merer.ro_-1024x1024.jpg',
       
     },
     {
       id:3,
       title:'Bracelets',
+      imageUrl:'https://merer.ro/wp-content/uploads/2019/03/22-8-1024x1024.jpg',
       
     },
     {
       id:4,
       title:'Women',
+      imageUrl:'https://merer.ro/wp-content/uploads/2022/08/camasa-femei-vascoza-merer.ro_-1024x1024.jpg',
       
     },
     {
       id:5,
       title:'Men',
+      imageUrl:'https://merer.ro/wp-content/uploads/2022/09/camasa-din-bumbac-merer.ro_-1024x1024.jpg',
       
     },
   ]
   return (
-    <div className="categories-container" key='0'>
+    <div className="categories-container">
       
 
-      {categories.map(({title, id, index})=>(
-        <div className="category-container" key={id+'cc'}>
-        <div className="background-image" />
-        <div key={index+'cb'} className="category-body-container">
-          {/* <img /> */}
-          <h2>{title}</h2>
-          <p>Shop Now</p>
-        </div>
-        
-    
-        </div>
+      {categories.map((category)=>(
+        <CategoryItem key={category.id} category={category} />
      
       ))}
       
