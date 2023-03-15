@@ -42,10 +42,17 @@ export const db = getFirestore();
 }; */
 
 export const createUserDocumentFromAuth = async (userAuth) => {
-  const userDocRef = doc(db, 'users', userAuth.uid);
-  console.log(userDocRef);
-  const userSnapshot = await getDoc(userDocRef);
 
+  const userDocRef = doc(db, 'users', userAuth.uid);
+  
+  console.log(userDocRef);
+  
+  const userSnapshot = await getDoc(userDocRef);
+  //if user data exists
+  if (userSnapshot.exists()){
+    console.log('user exists!');
+  }
+  //if user data not exists
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
@@ -60,6 +67,6 @@ export const createUserDocumentFromAuth = async (userAuth) => {
       console.log('error creating the user', error.message);
     }
   }
-  
+  console.log(userDocRef);
   return userDocRef;
 };
