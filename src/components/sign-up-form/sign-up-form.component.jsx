@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+import { createAuthUserWithEmailAndPassword,createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
 
 const defaultFormFields = {
   displayName: '',
@@ -13,11 +13,37 @@ const SignUpForm = () => {
   const { displayName, email, password, confirmPassword } = formFields;
   console.log(formFields);
 
+  const resetFormFields =()=>{
+    setFormFields(defaultFormFields);
+
+  };
+
   const handleSubmit = async(event)=>{
     event.preventDefault();
+    // conform that password match
+    if(password!==confirmPassword){
+      alert("password don't match");
+      return;
+
+    }
+
+    try {
+      const {user} = await createAuthUserWithEmailAndPassword(email, password);
+      await createUserDocumentFromAuth(user, { displayName });
+      resetFormFields();
+      //console.log({user});
+    } catch(error){
+          if(error.code == 'auth/emai-already-in-use'){
+            alert('We have already an user with this email');
+          } else {
+            console.log('user creation error:' , error);
+          }
+          
+      }
     
 
-  }
+
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,7 +55,7 @@ const SignUpForm = () => {
     <>
       <div>
         <h1>Sign UP with your email and password</h1>
-        <form onSubmit={() => {}}>
+        <form onSubmit={handleSubmit}>
           <label>Display Name</label>
           <input
             type="text"

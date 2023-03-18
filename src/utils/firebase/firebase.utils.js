@@ -42,15 +42,11 @@ export const signInWithGoogleRedirect=()=>signInWithRedirect(auth, googleProvide
 export const db = getFirestore();
 
 
-// create some methods
-
-/* const createUserDocumentFromAuth = async (userAuth) => {
-  // we need to know if it exist a doc reference
-  const  userDocRef = doc(db, 'users', userAuth.uid);
-  console.log(userDocRef);
-}; */
-
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+  userAuth, 
+  additionalInformation={}
+  ) => {
+  // additionalInformation is used to give us the name if the name is not give by firebase.
   if (!userAuth) return;
 
   const userDocRef = doc(db, 'users', userAuth.uid);
@@ -72,6 +68,7 @@ export const createUserDocumentFromAuth = async (userAuth) => {
         displayName,
         email,
         createdAt,
+        ...additionalInformation
       });
     } catch (error) {
       console.log('error creating the user', error.message);
