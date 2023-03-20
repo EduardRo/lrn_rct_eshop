@@ -37,15 +37,15 @@ const SignIn = () => {
   };
  */
   return (
-    <><div>
-      Sign In
+    <div>
+      <h1>Sign In</h1>
       <button onClick={logGoogleUser}>Sign in with Google Popup</button>
-      <button onClick={signInWithGoogleRedirect}>
+      {/* <button onClick={signInWithGoogleRedirect}>
         Sign in with Google Redirect
-      </button>
-    </div><div>
+      </button> */}
+    
         <SignUpForm />
-      </div></>
+      </div>
   );
 };
 
