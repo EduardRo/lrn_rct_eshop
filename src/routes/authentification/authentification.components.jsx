@@ -11,7 +11,7 @@ import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
 import Button from "../../components/button/button.component";
 
 
-const SignIn = () => {
+const Authentication = () => {
   useEffect(() => async ()=> {
     const response = await getRedirectResult(auth);
     if (response){
@@ -50,4 +50,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Authentication;
