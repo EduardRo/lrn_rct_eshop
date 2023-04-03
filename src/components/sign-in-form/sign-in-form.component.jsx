@@ -8,15 +8,15 @@ import './sign-in-form.styles.scss';
 import Button from "../button/button.component";
 
 const defaultFormFields = {
-  displayName: "",
+  
   email: "",
   password: "",
-  confirmPassword: "",
+  
 };
 
-const SignUpForm = () => {
+const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { displayName, email, password, confirmPassword } = formFields;
+  const {  email, password } = formFields;
   console.log(formFields);
 
   const resetFormFields = () => {
@@ -26,25 +26,15 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     // conform that password match
-    if (password !== confirmPassword) {
+    /* if (password !== confirmPassword) {
       alert("password don't match");
       return;
-    }
+    } */
 
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await createUserDocumentFromAuth(user, { displayName });
-      resetFormFields();
-      //console.log({user});
+      
     } catch (error) {
-      if (error.code == "auth/emai-already-in-use") {
-        alert("We have already an user with this email");
-      } else {
-        console.log("user creation error:", error);
-      }
+      
     }
   };
 
@@ -57,36 +47,20 @@ const SignUpForm = () => {
   return (
     
       <div className="sign-up-container">
-        <h2>Don't have an account?</h2>
-        <span>Sign UP with your email and password</span>
+        <h2>Already have an account?</h2>
+        <span>Sign in with your email and password</span>
         <form onSubmit={handleSubmit} className="form-input">
-          {/* <label>Display Name</label>
-          <input
-            type="text"
-            required
-            onChange={handleChange}
-            name="displayName"
-            value={displayName}
-            autoComplete="name"
-          /> */}
-          <FormInput
-            label="Display Name"
-            type="text"
-            required
-            onChange={handleChange}
-            name="displayName"
-            value={displayName}
-            autoComplete="name"
-          />
+          
+         
           
           <FormInput
             label="Email"
             type="text"
             required
             onChange={handleChange}
-            name="displayName"
-            value={displayName}
-            autoComplete="name"
+            name="email"
+            value={email}
+            autoComplete="email"
           />
           
           <FormInput
@@ -94,25 +68,17 @@ const SignUpForm = () => {
             type="text"
             required
             onChange={handleChange}
-            name="displayName"
-            value={displayName}
-            autoComplete="name"
+            name="password"
+            value={password}
+            autoComplete="password"
           />
           
-          <FormInput
-            label="Confirm Password"
-            type="text"
-            required
-            onChange={handleChange}
-            name="displayName"
-            value={displayName}
-            autoComplete="name"
-          />
-          <Button buttonType='inverted' type="submit">Sign Up</Button>
+         
+          <Button buttonType='inverted' type="submit">Sign In</Button>
         </form>
       </div>
     
   );
 };
 
-export default SignUpForm;
+export default SignInForm;

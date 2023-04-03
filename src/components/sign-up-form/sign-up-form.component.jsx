@@ -84,9 +84,9 @@ const SignUpForm = () => {
             type="text"
             required
             onChange={handleChange}
-            name="displayName"
-            value={displayName}
-            autoComplete="name"
+            name="email"
+            value={email}
+            autoComplete="email"
           />
           
           <FormInput
@@ -94,9 +94,9 @@ const SignUpForm = () => {
             type="text"
             required
             onChange={handleChange}
-            name="displayName"
-            value={displayName}
-            autoComplete="name"
+            name="password"
+            value={password}
+            autoComplete="password"
           />
           
           <FormInput
@@ -104,9 +104,9 @@ const SignUpForm = () => {
             type="text"
             required
             onChange={handleChange}
-            name="displayName"
-            value={displayName}
-            autoComplete="name"
+            name="confirmPassword"
+            value={confirmPassword}
+            autoComplete="confirm password"
           />
           <Button buttonType='inverted' type="submit">Sign Up</Button>
         </form>
