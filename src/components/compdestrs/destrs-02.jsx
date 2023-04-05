@@ -1,20 +1,13 @@
-import "./form-input.styles.scss";
-
-const FormInput = ({ label, ...otherProps }) => {
-  return (
-    <div className="group">
-      <input className="form-input" {...otherProps} />
-      {label && (
-        <label
-          className={`${
-            otherProps.value.length ? "shrink" : ""
-          } form-input-label`}
-        >
-          {label}
-        </label>
-      )}
-    </div>
-  );
-};
-
-export default FormInput;
+function ParentComponent() {
+    return (
+      <div>
+        <h1>This is the parent component</h1>
+        <ChildComponent />
+      </div>
+    );
+  }
+  
+  function ChildComponent() {
+    return <p>This is the child component</p>;
+  }
+  
